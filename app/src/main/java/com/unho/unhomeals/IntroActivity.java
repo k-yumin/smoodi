@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.unho.unhomeals.adapter.MainAdapter;
 import com.unho.unhomeals.data.Meal;
@@ -111,6 +112,9 @@ public class IntroActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
+
+            TextView tv_loading = findViewById(R.id.tv_loading);
+            tv_loading.setVisibility(View.INVISIBLE);
 
             Button btn_student = findViewById(R.id.btn_student);
             Button btn_teacher = findViewById(R.id.btn_teacher);

@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".IntroActivity">
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        app:srcCompat="@drawable/img_unho" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/black"
+        android:text="앱 이름"
+        android:textSize="60dp" />
+
+    <TextView
+        android:id="@+id/tv_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_student"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/regular"
+        android:text="급식 데이터를 불러오는 중입니다..."
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/btn_student"
