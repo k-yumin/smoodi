@@ -111,8 +111,8 @@ public class ApplyActivity extends AppCompatActivity {
         btn_apply = findViewById(R.id.btn_apply);
 
         UID = SharedPf.getString(this, "UID");
-        ArrayList<String> applicants = new ArrayList<>(); // TODO SERVER 서버에서 석식 신청한 UID 가져옴
-        applicants.add("S2080272"); // TODO REMOVE SAMPLE DATA
+        ArrayList<String> applicants = new ArrayList<>(); // TODO SERVER : Get applicants from server
+        applicants.add("S2080272"); // TODO REMOVE : SAMPLE DATA
 
         if (UID.equals("0")) {
             cb_apply.setVisibility(View.INVISIBLE);
@@ -171,7 +171,7 @@ public class ApplyActivity extends AppCompatActivity {
             String date = dateFormat2.format(Objects.requireNonNull(dateFormat1.parse(monday)));
 
             File parent = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-            File file = new File(parent, date+"석식신청명단.xls"); // TODO FILE NAME
+            File file = new File(parent, date+"석식신청명단.xls");
 
             FileOutputStream os = new FileOutputStream(file);
             workbook.write(os);
@@ -195,7 +195,7 @@ public class ApplyActivity extends AppCompatActivity {
         super.onDestroy();
         String text = btn_apply.getText().toString();
         if (text.equals("신청완료") || apply_always) {
-            // TODO SERVER UID를 서버에 전송
+            // TODO SERVER : Send "UID" to server
         }
     }
 }

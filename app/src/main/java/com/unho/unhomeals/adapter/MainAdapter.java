@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
-    private ArrayList<Meal> meals;
+    private final ArrayList<Meal> meals;
 
     public MainAdapter(ArrayList<Meal> meals) {
         this.meals = meals;

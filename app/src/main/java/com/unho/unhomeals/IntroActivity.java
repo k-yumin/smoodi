@@ -36,7 +36,7 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
-        userInfo = new HashMap<>(); // TODO SERVER 사용자 정보를 담고 있는 HashMap (서버 대체)
+        userInfo = new HashMap<>(); // TODO SERVER : Move this data to server
         userInfo.put("S2080272", "10405 김규민");
         userInfo.put("S2080131", "10428 황인재");
 

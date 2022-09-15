@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_weight="6"
+        android:fontFamily="@font/medium"
+        android:gravity="center_vertical"
+        android:paddingLeft="12dp"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btn_bad"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="6dp"
+        android:layout_weight="1"
+        android:background="@drawable/effect_round"
+        android:backgroundTint="@color/light"
+        android:fontFamily="@font/medium"
+        android:text="싫음"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btn_soso"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="6dp"
+        android:layout_weight="1"
+        android:background="@drawable/effect_round"
+        android:backgroundTint="@color/light"
+        android:fontFamily="@font/medium"
+        android:text="보통"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btn_good"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="6dp"
+        android:layout_weight="1"
+        android:background="@drawable/effect_round"
+        android:backgroundTint="@color/light"
+        android:fontFamily="@font/medium"
+        android:text="좋음"
+        android:textColor="@color/white" />
+</LinearLayout>
