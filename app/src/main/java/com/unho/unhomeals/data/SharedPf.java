@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SharedPf {
 
-    private static final String NAME = "unhosharedpreferences";
+    public static final String NAME = "unhosharedpreferences";
 
     public static void put(AppCompatActivity activity, String s, boolean b) {
         SharedPreferences.Editor editor = activity.getSharedPreferences(NAME, Context.MODE_PRIVATE).edit();

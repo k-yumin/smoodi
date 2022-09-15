@@ -40,7 +40,8 @@ public class IntroActivity extends AppCompatActivity {
         userInfo.put("S2080272", "10405 김규민");
         userInfo.put("S2080131", "10428 황인재");
 
-        new MealServiceDietInfo().execute();
+        if (dietInfo == null) new MealServiceDietInfo().execute();
+        else new MealServiceDietInfo().onPostExecute(null);
     }
 
     public static Map<String, String> dietInfo;
