@@ -32,6 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Objects;
 
 public class ApplyActivity extends AppCompatActivity {
 
@@ -65,7 +66,13 @@ public class ApplyActivity extends AppCompatActivity {
         monday = dateFormat1.format(calendar.getTime());
 
         TextView tv_weekday = findViewById(R.id.tv_weekday);
-        tv_weekday.setText(monday+" ~ "+friday);
+        tv_weekday.setText(
+            String.format(
+                getString(R.string.date_rng),
+                monday,
+                friday
+            )
+        );
 
         // ViewPager2 Adapter
         Meal meal1 = new Meal("석식", "");
@@ -82,9 +89,9 @@ public class ApplyActivity extends AppCompatActivity {
             contents[i] = IntroActivity.dietInfo.get(dateFormat2.format(calendar.getTime())+"석식");
             if (contents[i] == null) contents[i] = "급식 정보가 없습니다.";
             adapter.getItemAt(i).setContent(contents[i]);
+            adapter.notifyItemChanged(i);
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
-        adapter.notifyDataSetChanged();
 
         // ViewPager2
         CompositePageTransformer transformer = new CompositePageTransformer();
@@ -109,7 +116,7 @@ public class ApplyActivity extends AppCompatActivity {
 
         if (UID.equals("0")) {
             cb_apply.setVisibility(View.INVISIBLE);
-            btn_apply.setText("석식신청명단(XLS)");
+            btn_apply.setText(getText(R.string.export_applicants));
             btn_apply.setOnClickListener(view -> {
                 // UID를 학번이름으로 변환
                 for (int i = 0; i < applicants.size(); i++) {
@@ -161,7 +168,7 @@ public class ApplyActivity extends AppCompatActivity {
         }
 
         try {
-            String date = dateFormat2.format(dateFormat1.parse(monday));
+            String date = dateFormat2.format(Objects.requireNonNull(dateFormat1.parse(monday)));
 
             File parent = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
             File file = new File(parent, date+"석식신청명단.xls"); // TODO FILE NAME

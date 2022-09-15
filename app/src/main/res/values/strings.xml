@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">UNHOMEALS</string>
+    <string name="date_rng">%1$s ~ %2$s</string>
+    <string name="export_applicants">석식신청명단(XLS)</string>
 </resources>
