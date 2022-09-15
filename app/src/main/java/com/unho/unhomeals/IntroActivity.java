@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -36,7 +35,7 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
-        userInfo = new HashMap<>(); // TODO SERVER
+        userInfo = new HashMap<>(); // TODO SERVER 사용자 정보를 담고 있는 HashMap (서버 대체)
         userInfo.put("S2080272", "10405 김규민");
         userInfo.put("S2080131", "10428 황인재");
 
@@ -130,7 +129,7 @@ public class IntroActivity extends AppCompatActivity {
                 btn_teacher.setVisibility(View.VISIBLE);
                 btn_teacher.setAnimation(animation);
                 btn_teacher.setOnClickListener(view -> {
-                    // TODO INPUT PASSCODE
+                    // TODO SHOW FRAGMENT TO INPUT PASSCODE
                     SharedPf.put(IntroActivity.this, "UID", "0");
 
                     Intent intent = new Intent(IntroActivity.this, MainActivity.class);
