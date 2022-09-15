@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -51,7 +52,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_prev"
+            android:id="@+id/btn_prev_rate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="-2dp"
@@ -63,7 +64,7 @@
             android:textSize="23dp" />
 
         <TextView
-            android:id="@+id/tv_today"
+            android:id="@+id/tv_today_rate"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
@@ -73,7 +74,7 @@
             android:textSize="23sp" />
 
         <Button
-            android:id="@+id/btn_next"
+            android:id="@+id/btn_next_rate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="-2dp"
@@ -82,22 +83,42 @@
             android:fontFamily="@font/bold"
             android:text="\u003e"
             android:textColor="@color/light"
-            android:textSize="23dp" />
+            android:textSize="23dp"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_rate"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
 
-    <Button
-        android:id="@+id/btn_submit"
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <View
         android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_below="@id/ll"
+        android:layout_marginTop="2dp"
+        android:background="@color/light" />
+
+    <TextView
+        android:id="@+id/tv_rate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/semibold"
+        android:gravity="center"
+        android:text="만족도"
+        android:textSize="18dp" />
+
+    <RatingBar
+        android:id="@+id/rb_rate"
+        android:layout_width="wrap_content"
         android:layout_height="70dp"
-        android:background="@color/unho"
-        android:fontFamily="@font/bold"
-        android:text="제출하기"
-        android:textColor="@color/white"
-        android:textSize="26dp" />
+        android:layout_gravity="center_horizontal"
+        android:progressTint="@color/unho"
+        android:secondaryProgressTint="@color/zxing_transparent"
+        android:stepSize="0.5" />
 </LinearLayout>

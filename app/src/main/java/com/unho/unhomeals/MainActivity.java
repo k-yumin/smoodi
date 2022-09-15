@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             iv_profile.setImageResource(R.drawable.pf_teacher);
             tv_profile.setText("선생님");
 
-            float rating = 4.5f; // TODO SERVER 학생들의 급식 만족도 평균값
+            float rating = 4.5f; // TODO SERVER : Get the average of ratings from server
             rating(rating);
         } else {
             iv_profile.setImageResource(R.drawable.pf_student);
