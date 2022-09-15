@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Home/Documents/Java/Android/UNHOMEALS/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2585" />
+        <entry key="..\:/Users/Home/Documents/Java/Android/UNHOMEALS/app/src/main/res/drawable/effect_shadow.xml" value="0.2585" />
+        <entry key="..\:/Users/Home/Documents/Java/Android/UNHOMEALS/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2585" />
+        <entry key="..\:/Users/Home/Documents/Java/Android/UNHOMEALS/app/src/main/res/layout/activity_apply.xml" value="0.2490740740740741" />
+        <entry key="..\:/Users/Home/Documents/Java/Android/UNHOMEALS/app/src/main/res/layout/activity_intro.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/Home/Documents/Java/Android/UNHOMEALS/app/src/main/res/layout/activity_main.xml" value="0.35520833333333335" />
+        <entry key="..\:/Users/Home/Documents/Java/Android/UNHOMEALS/app/src/main/res/layout/activity_rate.xml" value="0.35520833333333335" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".IntroActivity">
+
+    <Button
+        android:id="@+id/btn_student"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_above="@+id/btn_teacher"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/effect_round"
+        android:backgroundTint="@color/unho"
+        android:fontFamily="@font/bold"
+        android:text="학생 로그인"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btn_teacher"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/effect_round"
+        android:backgroundTint="@color/light"
+        android:fontFamily="@font/semibold"
+        android:text="교사 로그인"
+        android:textSize="20sp"
+        android:visibility="invisible" />
+</RelativeLayout>
