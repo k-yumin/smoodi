@@ -26,6 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                     @SuppressLint("SimpleDateFormat")
                     SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyyMMdd");
 
-                    String today = dateFormat2.format(dateFormat1.parse(tv_today.getText().toString()));
+                    String today = dateFormat2.format(Objects.requireNonNull(dateFormat1.parse(charSequence.toString())));
 
                     String[] contents = {
                             dietInfo.get(today+"조식"),
@@ -82,8 +83,8 @@ public class MainActivity extends AppCompatActivity {
                     for (int j = 0; j < contents.length; j++) {
                         if (contents[j] == null) contents[j] = "급식 정보가 없습니다.";
                         adapter.getItemAt(j).setContent(contents[j]);
+                        adapter.notifyItemChanged(j);
                     }
-                    adapter.notifyDataSetChanged();
                 } catch (ParseException ignored) {}
             }
 
