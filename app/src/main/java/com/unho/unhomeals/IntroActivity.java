@@ -64,6 +64,8 @@ public class IntroActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
+            try { Thread.sleep(1_500); } catch (InterruptedException ignored) {}
+
             // Params
             String URL = "https://open.neis.go.kr/hub/mealServiceDietInfo";
             String KEY = "23c08f8654a74ec9984cd75eafdfdea0";
