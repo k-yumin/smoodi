@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -74,14 +75,12 @@ public class IntroActivity extends AppCompatActivity {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
             Calendar calendar = Calendar.getInstance();
 
-            // MLSV_FROM_YMD : The first day of last month
-            calendar.add(Calendar.MONTH, -1);
-            calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+            // MLSV_FROM_YMD : Minus 15 days
+            calendar.add(Calendar.DAY_OF_MONTH, -15);
             String MLSV_FROM_YMD = dateFormat.format(calendar.getTime());
 
-            // MLSV_TO_YMD : The last day of next month
-            calendar.add(Calendar.MONTH, 2);
-            calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+            // MLSV_TO_YMD : Plus 15 days
+            calendar.add(Calendar.DAY_OF_MONTH, 30);
             String MLSV_TO_YMD = dateFormat.format(calendar.getTime());
 
             try {

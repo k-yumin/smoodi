@@ -24,6 +24,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class RateActivity extends AppCompatActivity {
 
@@ -85,7 +86,7 @@ public class RateActivity extends AppCompatActivity {
                     @SuppressLint("SimpleDateFormat")
                     SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyyMMdd");
 
-                    String today = dateFormat2.format(dateFormat1.parse(tv_today.getText().toString()));
+                    String today = dateFormat2.format(Objects.requireNonNull(dateFormat1.parse(charSequence.toString())));
 
                     ArrayList<String> items = new ArrayList<>();
 
