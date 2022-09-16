@@ -27,10 +27,10 @@
             android:layout_height="match_parent"
             android:layout_marginTop="3dp"
             android:layout_weight="4"
-            android:fontFamily="@font/bold"
+            android:fontFamily="@font/medium"
             android:gravity="center"
             android:text="설정"
-            android:textSize="24dp" />
+            android:textSize="22dp" />
 
         <View
             android:layout_width="0dp"

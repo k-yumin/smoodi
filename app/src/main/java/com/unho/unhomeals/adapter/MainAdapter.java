@@ -44,8 +44,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_title;
-        TextView tv_content;
+        private final TextView tv_title;
+        private final TextView tv_content;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

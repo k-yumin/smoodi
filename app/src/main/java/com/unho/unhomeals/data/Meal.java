@@ -1,7 +1,7 @@
 package com.unho.unhomeals.data;
 
 public class Meal {
-    private String title;
+    private final String title;
     private String content;
 
     public Meal(String title, String content) {

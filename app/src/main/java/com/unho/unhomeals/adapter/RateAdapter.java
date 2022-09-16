@@ -45,11 +45,11 @@ public class RateAdapter extends RecyclerView.Adapter<RateAdapter.ViewHolder> {
 
     public static class ViewHolder extends  RecyclerView.ViewHolder {
 
-        TextView tv_item;
+        private final TextView tv_item;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_item = itemView.findViewById(R.id.tv_item);
+            tv_item = itemView.findViewById(R.id.tv_item_rate);
 
             Button btn_bad = itemView.findViewById(R.id.btn_bad);
             Button btn_soso = itemView.findViewById(R.id.btn_soso);

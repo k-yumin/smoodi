@@ -118,9 +118,8 @@ public class ApplyActivity extends AppCompatActivity {
             cb_apply.setVisibility(View.INVISIBLE);
             btn_apply.setText(getText(R.string.export_applicants));
             btn_apply.setOnClickListener(view -> {
-                // UID를 학번이름으로 변환
                 for (int i = 0; i < applicants.size(); i++) {
-                    applicants.set(i, IntroActivity.userInfo.get(applicants.get(i)));
+                    applicants.set(i, IntroActivity.userInfo.get(applicants.get(i))); // TODO SERVER : CONVERT UID TO USER INFO
                 }
                 download(applicants);
             });

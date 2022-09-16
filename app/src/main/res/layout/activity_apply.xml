@@ -26,10 +26,10 @@
             android:layout_height="match_parent"
             android:layout_marginTop="3dp"
             android:layout_weight="4"
-            android:fontFamily="@font/bold"
+            android:fontFamily="@font/medium"
             android:gravity="center"
             android:text="석식"
-            android:textSize="24dp" />
+            android:textSize="22dp" />
 
         <View
             android:layout_width="0dp"
@@ -48,7 +48,7 @@
         android:id="@+id/tv_weekday"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="140dp"
         android:fontFamily="@font/bold"
         android:gravity="center"
         android:textColor="@color/black"
@@ -57,9 +57,9 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_meals_apply"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="300dp"
         android:layout_below="@id/tv_weekday"
-        android:layout_marginTop="-2dp"
+        android:layout_marginTop="-1dp"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="horizontal"

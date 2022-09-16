@@ -130,7 +130,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vp_meals"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="300dp"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:orientation="horizontal"
@@ -148,10 +148,13 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/zxing_transparent"
+            android:drawableTop="@drawable/xml_apply"
             android:fontFamily="@font/semibold"
+            android:paddingTop="10dp"
+            android:paddingBottom="15dp"
             android:text="석식"
             android:textColor="@color/black"
-            android:textSize="23sp" />
+            android:textSize="21sp" />
 
         <Button
             android:id="@+id/btn_rate"
@@ -159,10 +162,13 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/zxing_transparent"
+            android:drawableTop="@drawable/xml_rate"
             android:fontFamily="@font/semibold"
+            android:paddingTop="10dp"
+            android:paddingBottom="15dp"
             android:text="설문"
             android:textColor="@color/black"
-            android:textSize="23sp" />
+            android:textSize="21sp" />
 
         <Button
             android:id="@+id/btn_ranking"
@@ -170,10 +176,13 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/zxing_transparent"
+            android:drawableTop="@drawable/xml_ranking"
             android:fontFamily="@font/semibold"
+            android:paddingTop="10dp"
+            android:paddingBottom="15dp"
             android:text="순위"
             android:textColor="@color/black"
-            android:textSize="23sp" />
+            android:textSize="21sp" />
 
         <Button
             android:id="@+id/btn_setting"
@@ -181,9 +190,12 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/zxing_transparent"
+            android:drawableTop="@drawable/xml_setting"
             android:fontFamily="@font/semibold"
+            android:paddingTop="10dp"
+            android:paddingBottom="15dp"
             android:text="설정"
             android:textColor="@color/black"
-            android:textSize="23sp" />
+            android:textSize="21sp" />
     </LinearLayout>
 </LinearLayout>
