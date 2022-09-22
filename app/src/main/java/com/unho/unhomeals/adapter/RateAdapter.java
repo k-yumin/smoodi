@@ -1,6 +1,8 @@
 package com.unho.unhomeals.adapter;
 
 import android.annotation.SuppressLint;
+import android.provider.Telephony;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,8 @@ import com.unho.unhomeals.R;
 import com.unho.unhomeals.RateActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RateAdapter extends RecyclerView.Adapter<RateAdapter.ViewHolder> {
 
@@ -31,6 +35,21 @@ public class RateAdapter extends RecyclerView.Adapter<RateAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        String item = items.get(position);
+
+        for (String key : RateActivity.changes.keySet()) {
+            if (key.contains(item)) {
+                float v = RateActivity.changes.get(key);
+                if (v == -2.0) {
+                    holder.getBad().callOnClick();
+                } else if (v == 1.0) {
+                    holder.getSoso().callOnClick();
+                } else if (v == 2.0) {
+                    holder.getGood().callOnClick();
+                }
+            }
+        }
+
         holder.getTextView().setText(items.get(position));
     }
 
@@ -46,22 +65,26 @@ public class RateAdapter extends RecyclerView.Adapter<RateAdapter.ViewHolder> {
     public static class ViewHolder extends  RecyclerView.ViewHolder {
 
         private final TextView tv_item;
+        private final Button btn_bad, btn_soso, btn_good;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_item = itemView.findViewById(R.id.tv_item_rate);
 
-            Button btn_bad = itemView.findViewById(R.id.btn_bad);
-            Button btn_soso = itemView.findViewById(R.id.btn_soso);
-            Button btn_good = itemView.findViewById(R.id.btn_good);
+            btn_bad = itemView.findViewById(R.id.btn_bad);
+            btn_soso = itemView.findViewById(R.id.btn_soso);
+            btn_good = itemView.findViewById(R.id.btn_good);
 
             btn_bad.setOnClickListener(view -> {
                 setBackgroundTint(btn_bad, R.color.pale_red);
                 setBackgroundTint(btn_soso, R.color.light);
                 setBackgroundTint(btn_good, R.color.light);
 
-                String key = RateActivity.UID+"_"+ tv_item.getText().toString();
-                RateActivity.changes.put(key, -2.0f);
+                String text = tv_item.getText().toString();
+                if (RateActivity.changes.containsKey(text)) {
+                    String key = RateActivity.UID+"_"+text;
+                    RateActivity.changes.put(key, -2.0f);
+                }
             });
 
             btn_soso.setOnClickListener(view -> {
@@ -69,8 +92,11 @@ public class RateAdapter extends RecyclerView.Adapter<RateAdapter.ViewHolder> {
                 setBackgroundTint(btn_soso, R.color.pale_yellow);
                 setBackgroundTint(btn_good, R.color.light);
 
-                String key = RateActivity.UID+"_"+ tv_item.getText().toString();
-                RateActivity.changes.put(key, 1.0f);
+                String text = tv_item.getText().toString();
+                String key = RateActivity.UID+"_"+text;
+                if (RateActivity.changes.containsKey(text)) {
+                    RateActivity.changes.put(key, 1.0f);
+                }
             });
 
             btn_good.setOnClickListener(view -> {
@@ -78,13 +104,28 @@ public class RateAdapter extends RecyclerView.Adapter<RateAdapter.ViewHolder> {
                 setBackgroundTint(btn_soso, R.color.light);
                 setBackgroundTint(btn_good, R.color.pale_green);
 
-                String key = RateActivity.UID+"_"+ tv_item.getText().toString();
-                RateActivity.changes.put(key, 2.0f);
+                String text = tv_item.getText().toString();
+                if (RateActivity.changes.containsKey(text)) {
+                    String key = RateActivity.UID+"_"+text;
+                    RateActivity.changes.put(key, 2.0f);
+                }
             });
         }
 
         public TextView getTextView() {
             return tv_item;
+        }
+
+        public Button getBad() {
+            return btn_bad;
+        }
+
+        public Button getSoso() {
+            return btn_soso;
+        }
+
+        public Button getGood() {
+            return btn_good;
         }
 
         @SuppressLint("UseCompatLoadingForColorStateLists")
