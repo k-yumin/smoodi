@@ -1,19 +1,20 @@
 package com.unho.unhomeals;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
@@ -30,8 +31,8 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
+    static Map<String, String> dietInfo;
     MainAdapter adapter;
-    Map<String, String> dietInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
             rating(rating);
         } else {
             iv_profile.setImageResource(R.drawable.pf_student);
-            tv_profile.setText(IntroActivity.userInfo.get(UID));
+            String[] name = IntroActivity.userInfo.get(UID).split(" ");
+            tv_profile.setText(String.format("%c-%c %s", name[0].charAt(0), name[0].charAt(2), name[1]));
             barcode(UID);
         }
 
@@ -66,12 +68,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                try {
-                    @SuppressLint("SimpleDateFormat")
-                    SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy. M. d.");
-                    @SuppressLint("SimpleDateFormat")
-                    SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyyMMdd");
+                @SuppressLint("SimpleDateFormat")
+                SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy. M. d.");
+                @SuppressLint("SimpleDateFormat")
+                SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyyMMdd");
 
+                try {
                     String today = dateFormat2.format(Objects.requireNonNull(dateFormat1.parse(charSequence.toString())));
 
                     String[] contents = {
@@ -118,6 +120,16 @@ public class MainActivity extends AppCompatActivity {
         vp_meals.setOffscreenPageLimit(3);
         vp_meals.setPageTransformer(transformer);
 
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+
+        if (hour < 8) {
+            vp_meals.setCurrentItem(0);
+        } else if (hour < 14) {
+            vp_meals.setCurrentItem(1);
+        } else {
+            vp_meals.setCurrentItem(2);
+        }
+
         // Buttons
         findViewById(R.id.btn_apply).setOnClickListener(view -> {
             Intent intent = new Intent(this, ApplyActivity.class);
@@ -148,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         tv_barcode.setVisibility(View.VISIBLE);
 
         try {
-            Bitmap bitmap = new BarcodeEncoder().encodeBitmap(id, BarcodeFormat.CODE_39, 900, 150);
+            Bitmap bitmap = new BarcodeEncoder().encodeBitmap(id, BarcodeFormat.CODE_39, 800, 150);
             iv_barcode.setImageBitmap(bitmap);
             tv_barcode.setText(id);
         } catch(WriterException ignored) {}

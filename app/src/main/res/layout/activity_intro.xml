@@ -6,22 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".IntroActivity">
 
-    <ImageView
-        android:id="@+id/iv"
-        android:layout_width="240dp"
-        android:layout_height="240dp"
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-        app:srcCompat="@drawable/img_unho" />
+        android:layout_marginTop="260dp"
+        android:fontFamily="@font/eland"
+        android:text="@string/app_name"
+        android:textColor="#73E0FD"
+        android:textSize="86dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/iv"
+        android:layout_below="@+id/app_name"
         android:layout_centerHorizontal="true"
-        android:fontFamily="@font/black"
-        android:text="앱 이름"
-        android:textSize="60dp" />
+        android:fontFamily="@font/eland"
+        android:text="Save the Money on Dinner"
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/tv_loading"
@@ -42,7 +45,7 @@
         android:layout_marginRight="12dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/effect_round"
-        android:backgroundTint="@color/unho"
+        android:backgroundTint="#73E0FD"
         android:fontFamily="@font/bold"
         android:text="학생 로그인"
         android:textColor="@color/white"
@@ -63,4 +66,5 @@
         android:text="교사 로그인"
         android:textSize="20sp"
         android:visibility="invisible" />
+
 </RelativeLayout>

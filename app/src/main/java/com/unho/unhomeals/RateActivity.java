@@ -23,8 +23,10 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 public class RateActivity extends AppCompatActivity {
 
@@ -39,6 +41,7 @@ public class RateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rate);
         findViewById(R.id.exit_rate).setOnClickListener(view -> finish());
+        Map<String, String> dietInfo = IntroActivity.dietInfo;
 
         UID = SharedPf.getString(this, "UID");
 
@@ -46,15 +49,19 @@ public class RateActivity extends AppCompatActivity {
         context = getBaseContext();
         adapter = new RateAdapter(new ArrayList<>());
 
-        Map<String, String> dietInfo = IntroActivity.dietInfo;
+        // Load previous "changes" from SharedPreferences
+        for (String rating : SharedPf.getStringSet(this, "MY_RATINGS")) {
+            String key = rating.split("#")[0];
+            float value = Float.parseFloat(rating.split("#")[1]);
+            changes.put(key, value);
+        }
 
         // RatingBar
         TextView tv_rate = findViewById(R.id.tv_rate);
         RatingBar rb_rate = findViewById(R.id.rb_rate);
 
         rb_rate.setOnRatingBarChangeListener((ratingBar, v, b) -> {
-            String text;
-
+            String text = "만족도";
             if (v <= 1.0) {
                 text = "만족도 매우 낮음";
             } else if (v <= 2.0) {
@@ -65,10 +72,7 @@ public class RateActivity extends AppCompatActivity {
                 text = "만족도 높음";
             } else if (v <= 5.0){
                 text = "만족도 매우 높음";
-            } else {
-                text = "만족도";
             }
-
             tv_rate.setText(text);
         });
 
@@ -80,15 +84,16 @@ public class RateActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                try {
-                    @SuppressLint("SimpleDateFormat")
-                    SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy. M. d.");
-                    @SuppressLint("SimpleDateFormat")
-                    SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyyMMdd");
+                @SuppressLint("SimpleDateFormat")
+                SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy. M. d.");
+                @SuppressLint("SimpleDateFormat")
+                SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyyMMdd");
 
+                try {
                     String today = dateFormat2.format(Objects.requireNonNull(dateFormat1.parse(charSequence.toString())));
 
-                    ArrayList<String> items = new ArrayList<>();
+                    float v = rb_rate.getRating();
+                    if (v != 0.0f) changes.put(UID+"*"+today, v);
 
                     String[] contents = {
                             dietInfo.get(today+"조식"),
@@ -96,17 +101,15 @@ public class RateActivity extends AppCompatActivity {
                             dietInfo.get(today+"석식"),
                     };
 
+                    ArrayList<String> items = new ArrayList<>();
                     for (String content : contents) {
                         if (content == null) continue;
                         String[] itemArray = content.split("\n");
                         items.addAll(Arrays.asList(itemArray));
                     }
 
-                    float v = rb_rate.getRating();
-                    if (v != 0.0f) changes.put(UID+"*"+today, v);
+                    items = new ArrayList<>(new HashSet<>(items));
 
-                    tv_rate.setText("만족도");
-                    rb_rate.setRating(0.0f);
                     adapter.setItems(items);
                     adapter.notifyDataSetChanged();
                 } catch (ParseException ignored) {}
@@ -147,6 +150,14 @@ public class RateActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        // Save "chagnes" in SharedPreferences
+        Set<String> changesSet = new HashSet<>();
+        for (String key : changes.keySet()) {
+            changesSet.add(key+"#"+changes.get(key));
+        }
+        SharedPf.put(this, "MY_RATINGS", changesSet);
+
         // TODO SERVER : Send "changes" to server
     }
 }

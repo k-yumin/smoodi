@@ -75,11 +75,11 @@ public class ApplyActivity extends AppCompatActivity {
         );
 
         // ViewPager2 Adapter
-        Meal meal1 = new Meal("석식", "");
-        Meal meal2 = new Meal("석식", "");
-        Meal meal3 = new Meal("석식", "");
-        Meal meal4 = new Meal("석식", "");
-        Meal meal5 = new Meal("석식", "");
+        Meal meal1 = new Meal("석식(월)", "");
+        Meal meal2 = new Meal("석식(화)", "");
+        Meal meal3 = new Meal("석식(수)", "");
+        Meal meal4 = new Meal("석식(목)", "");
+        Meal meal5 = new Meal("석식(금)", "");
 
         ArrayList<Meal> meals = new ArrayList<>(Arrays.asList(meal1, meal2, meal3, meal4, meal5));
         adapter = new MainAdapter(meals);
@@ -104,7 +104,7 @@ public class ApplyActivity extends AppCompatActivity {
 
         // Apply Always Checkbox
         cb_apply = findViewById(R.id.cb_apply);
-        apply_always = SharedPf.getBoolean(this, "apply_always");
+        apply_always = SharedPf.getBoolean(this, "APPLY_ALWAYS");
         if (apply_always) cb_apply.setChecked(true);
 
         // Apply Button
@@ -112,16 +112,36 @@ public class ApplyActivity extends AppCompatActivity {
 
         UID = SharedPf.getString(this, "UID");
         ArrayList<String> applicants = new ArrayList<>(); // TODO SERVER : Get applicants from server
-        applicants.add("S2080272"); // TODO REMOVE : SAMPLE DATA
+
+        Calendar today = Calendar.getInstance();
+        today.add(Calendar.DAY_OF_WEEK, 2);
+        int dayOfWeek = today.get(Calendar.DAY_OF_WEEK);
 
         if (UID.equals("0")) {
             cb_apply.setVisibility(View.INVISIBLE);
+            btn_apply.setBackground(ContextCompat.getDrawable(this, R.color.light));
             btn_apply.setText(getText(R.string.export_applicants));
+            if (dayOfWeek == 1 || dayOfWeek > 5) {
+                btn_apply.setBackground(ContextCompat.getDrawable(this, R.color.unho));
+            }
+
             btn_apply.setOnClickListener(view -> {
+                if (2 <= dayOfWeek && dayOfWeek <= 5) {
+                    String message = "석식 신청이 진행 중입니다.";
+                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                btn_apply.setBackground(ContextCompat.getDrawable(this, R.color.light));
+                btn_apply.setEnabled(false);
+
                 for (int i = 0; i < applicants.size(); i++) {
                     applicants.set(i, IntroActivity.userInfo.get(applicants.get(i))); // TODO SERVER : CONVERT UID TO USER INFO
                 }
                 download(applicants);
+
+                btn_apply.setBackground(ContextCompat.getDrawable(this, R.color.unho));
+                btn_apply.setEnabled(true);
             });
         } else {
             if (applicants.contains(UID)) {
@@ -140,7 +160,6 @@ public class ApplyActivity extends AppCompatActivity {
                 }
             });
         }
-
     }
 
     private void download(ArrayList<String> applicants) {
@@ -186,7 +205,7 @@ public class ApplyActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        SharedPf.put(this, "apply_always", cb_apply.isChecked());
+        SharedPf.put(this, "APPLY_ALWAYS", cb_apply.isChecked());
     }
 
     @Override

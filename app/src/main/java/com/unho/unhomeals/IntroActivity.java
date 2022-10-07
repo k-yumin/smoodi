@@ -1,7 +1,5 @@
 package com.unho.unhomeals;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -11,6 +9,8 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.unho.unhomeals.adapter.MainAdapter;
 import com.unho.unhomeals.data.Meal;
@@ -64,7 +64,7 @@ public class IntroActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            try { Thread.sleep(1_500); } catch (InterruptedException ignored) {}
+            try { Thread.sleep(2_000); } catch (InterruptedException ignored) {}
 
             // Params
             String URL = "https://open.neis.go.kr/hub/mealServiceDietInfo";
@@ -122,7 +122,7 @@ public class IntroActivity extends AppCompatActivity {
 
             if (SharedPf.getString(IntroActivity.this, "UID").length() == 0) {
                 Animation animation = new AlphaAnimation(0, 1);
-                animation.setDuration(200);
+                animation.setDuration(600);
 
                 btn_student.setVisibility(View.VISIBLE);
                 btn_student.setAnimation(animation);

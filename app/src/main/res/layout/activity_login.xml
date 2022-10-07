@@ -22,14 +22,14 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="330dp"
-            android:layout_height="220dp"
+            android:layout_width="285dp"
+            android:layout_height="185dp"
             app:srcCompat="@drawable/img_sample" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/medium"
             android:gravity="center"
             android:text="학생증 뒷면의 바코드를 스캔해주세요."

@@ -64,19 +64,31 @@
         android:clipToPadding="false"
         android:orientation="horizontal"
         android:paddingLeft="50dp"
-        android:paddingRight="50dp" />
+        android:paddingRight="50dp">
+
+    </androidx.viewpager2.widget.ViewPager2>
 
     <CheckBox
         android:id="@+id/cb_apply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/tv_apply"
         android:layout_marginLeft="15dp"
-        android:layout_marginBottom="85dp"
         android:fontFamily="@font/regular"
         android:minHeight="48dp"
         android:text="항상 신청하기"
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_apply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="85dp"
+        android:fontFamily="@font/light"
+        android:text="\u002a 석식 신청 기간: 매주 월요일 00:00 ~ 목요일 23:59"
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/btn_apply"
