@@ -23,18 +23,17 @@ class LoginActivity : AppCompatActivity() {
             val context = this@LoginActivity
 
             /* Scan Barcode */
-            login("test")
-//            GmsBarcodeScanning.getClient(context). also {
-//                it.startScan()
-//                    .addOnSuccessListener { barcode ->
-//                        val rawValue: String? = barcode.rawValue
-//                        login(rawValue!!)
-//                    }
-//                    .addOnFailureListener {
-//                        val toast = getString(R.string.error_api)
-//                        Toast.makeText(context, toast, Toast.LENGTH_SHORT).show()
-//                    }
-//            }
+            GmsBarcodeScanning.getClient(context). also {
+                it.startScan()
+                    .addOnSuccessListener { barcode ->
+                        val rawValue: String? = barcode.rawValue
+                        login(rawValue!!)
+                    }
+                    .addOnFailureListener {
+                        val toast = getString(R.string.error_api)
+                        Toast.makeText(context, toast, Toast.LENGTH_SHORT).show()
+                    }
+            }
         }
 
         btSuper.setOnClickListener {

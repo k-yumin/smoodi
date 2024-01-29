@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -17,6 +19,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        android.buildFeatures.buildConfig = true
+        buildConfigField("String", "API_KEY", getLocalProperties("api_key"))
     }
 
     buildTypes {
@@ -35,6 +40,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+}
+
+fun getLocalProperties(key: String): String {
+    return gradleLocalProperties(rootDir).getProperty(key)
 }
 
 dependencies {

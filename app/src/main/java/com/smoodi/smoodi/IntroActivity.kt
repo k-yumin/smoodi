@@ -69,7 +69,7 @@ class IntroActivity : AppCompatActivity() {
 
         val api = "https://open.neis.go.kr/hub/mealServiceDietInfo"
         val queryStrings = mutableMapOf(
-            "KEY" to "de3e332daad848eebe2460a9c6890b9c",
+            "KEY" to BuildConfig.API_KEY,
             "Type" to "xml",
             "pIndex" to "1",
             "pSize" to "100",
@@ -121,7 +121,6 @@ class IntroActivity : AppCompatActivity() {
             }
         }
 
-        /* Data: Save Cookies */
         Data.meals = meals
         Data.now = formattedNow
     }
