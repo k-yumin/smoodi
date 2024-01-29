@@ -1,0 +1,66 @@
+<resources>
+    <!-- SharedPreference Key -->
+    <string name="preference_file_key">SMOODI</string>
+
+    <!-- Error Messages -->
+    <string name="error_api">API 응답 없음</string>
+    <string name="error_server">서버 응답 없음</string>
+
+    <!-- IntroActivity -->
+    <string name="app_name">스무디</string>
+    <string name="subtitle">SAVE THE MONEY ON DINNER</string>
+
+    <!-- LoginActivity -->
+    <string name="login_hello">환영합니다!</string>
+    <string name="login_guide">학생증 뒷면의 바코드를\n스캔하여 로그인하세요</string>
+    <string name="login_super">선생님으로 로그인하기</string>
+    <string name="login_okay">확인</string>
+
+    <!-- JoinActivity -->
+    <string name="join_id">아이디</string>
+    <string name="join_number">학번</string>
+    <string name="join_number_hint">학번 4자리 숫자를 입력하세요</string>
+    <string name="join_name">이름</string>
+    <string name="join_name_hint">이름을 입력하세요</string>
+    <string name="join_join">등록</string>
+
+    <!-- SuperActivity -->
+    <string name="super_guide">비밀번호를 입력하세요</string>
+    <string name="super_wrong">비밀번호가 일치하지 않습니다</string>
+    <string name="super_over">시도 가능 횟수를 초과했습니다</string>
+    <string name="super_hint">6자리 PIN</string>
+
+    <!-- MainActivity -->
+    <string name="main_icon">●</string>
+    <string name="main_logout">로그아웃</string>
+    <string name="main_null">null</string>
+    <string name="main_meal1">조식</string>
+    <string name="main_meal2">중식</string>
+    <string name="main_meal3">석식</string>
+    <string name="main_meal_null">급식 정보가 없습니다</string>
+    <string name="main_rank">급식 메뉴\n인기 순위</string>
+    <string name="main_rate">급식 메뉴\n선호 조사</string>
+    <string name="main_apply">석식 신청</string>
+    <string name="main_back">이전</string>
+    <string name="main_sign">github.com/k-yumin</string>
+
+    <!-- ApplyActivity -->
+    <string name="apply_date">다음 주 석식</string>
+    <string name="apply_mon">월</string>
+    <string name="apply_tue">화</string>
+    <string name="apply_wed">수</string>
+    <string name="apply_thu">목</string>
+    <string name="apply_fri">금</string>
+    <string name="apply_always">앞으로 계속 자동으로 신청하기</string>
+    <string name="apply_apply">신청</string>
+    <string name="apply_apply_true">신청됨</string>
+    <string name="apply_download">신청 명단 다운로드</string>
+    <string name="apply_download_ing">신청 명단 다운로드 중</string>
+    <string name="apply_download_success">다운로드 성공! 다운로드 폴더에 저장되었습니다.</string>
+
+    <!-- RankActivity -->
+    <string name="rank_title">인기 순위</string>
+
+    <!-- RateActivity -->
+    <string name="rate_title">선호 조사</string>
+</resources>

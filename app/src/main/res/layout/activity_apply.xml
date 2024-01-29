@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    android:orientation="vertical"
+    tools:context=".ApplyActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:id="@+id/tvApplyBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/regular"
+            android:padding="5dp"
+            android:text="@string/main_back"
+            android:textColor="@color/gray_dark"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/bold"
+            android:text="@string/main_apply"
+            android:textSize="25sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_bright" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:fontFamily="@font/bold"
+            android:gravity="center_vertical"
+            android:text="@string/apply_date"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            tools:ignore="RelativeOverlap" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:background="@drawable/border"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvMon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/regular"
+                android:gravity="center"
+                android:text="@string/apply_mon"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="18dp"
+                android:layout_height="22dp" />
+
+            <TextView
+                android:id="@+id/tvTue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/regular"
+                android:gravity="center"
+                android:text="@string/apply_tue"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="18dp"
+                android:layout_height="22dp" />
+
+            <TextView
+                android:id="@+id/tvWed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/regular"
+                android:gravity="center"
+                android:text="@string/apply_wed"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="18dp"
+                android:layout_height="22dp" />
+
+            <TextView
+                android:id="@+id/tvThu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/regular"
+                android:gravity="center"
+                android:text="@string/apply_thu"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="18dp"
+                android:layout_height="22dp" />
+
+            <TextView
+                android:id="@+id/tvFri"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/regular"
+                android:gravity="center"
+                android:text="@string/apply_fri"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_marginBottom="18dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvApplyMeal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:fontFamily="@font/medium"
+            android:gravity="center"
+            android:padding="15dp"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_bright" />
+
+    <CheckBox
+        android:id="@+id/cbApply"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:fontFamily="@font/semibold"
+        android:text="@string/apply_always"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/btApply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/app_color"
+        android:fontFamily="@font/bold"
+        android:text="@string/apply_apply"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvApply"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:fontFamily="@font/regular"
+        android:gravity="center"
+        android:textColor="@color/gray_dark"
+        android:textSize="15sp" />
+</LinearLayout>

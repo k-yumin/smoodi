@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "65842553293",
+    "project_id": "smoodi-b",
+    "storage_bucket": "smoodi-b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65842553293:android:ae82ce4c55f42bfc742484",
+        "android_client_info": {
+          "package_name": "com.smoodi.smoodi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP-NOv6kY6OIvFG9-g9NeZQCl-mXkmmnw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
