@@ -78,7 +78,7 @@ class IntroActivity : AppCompatActivity() {
             "MLSV_YMD" to formattedNow,
         )
 
-        /* Meal: Today */
+        /* Get Today's Meal */
         val nowMeal = Jsoup.connect(api).data(queryStrings).get()
 
         for (row in nowMeal.select("row")) {
@@ -88,14 +88,14 @@ class IntroActivity : AppCompatActivity() {
             for (dish in row.select("DDISH_NM").text()
                 .replace("<br/>", "\n")
                 .split("\n")) {
-                dishList.add(removeAllergy(dish))
+                dishList.add(removeAllergyMark(dish))
             }
 
             val mealName = row.select("MMEAL_SC_NM").text()
             meals[mealName] = dishList.joinToString("\n")
         }
 
-        /* Meal: Next Week */
+        /* Get Next Week's Meal */
         queryStrings.remove("MLSV_YMD")
         queryStrings["MLSV_FROM_YMD"] = formattedNextMonday
         queryStrings["MLSV_TO_YMD"] = formattedNextFriday
@@ -113,7 +113,7 @@ class IntroActivity : AppCompatActivity() {
                 for (dish in row.select("DDISH_NM").text()
                     .replace("<br/>", "\n")
                     .split("\n")) {
-                    dishList.add(removeAllergy(dish))
+                    dishList.add(removeAllergyMark(dish))
                 }
 
                 val date = row.select("MLSV_YMD").text()
@@ -121,8 +121,10 @@ class IntroActivity : AppCompatActivity() {
             }
         }
 
+        /* Save Data on Data Class temporarily */
         Data.meals = meals
         Data.now = formattedNow
+
     }
 
     private fun getDayOfWeek(date: String): String {
@@ -139,10 +141,10 @@ class IntroActivity : AppCompatActivity() {
         }
     }
 
-    private fun removeAllergy(dish: String): String {
-        val allergy = dish.indexOf("(")
-        return if (allergy != -1) {
-            dish.substring(0, allergy-1)
+    private fun removeAllergyMark(dish: String): String {
+        val allergyMarkStart = dish.indexOf("(")
+        return if (allergyMarkStart != -1) {
+            dish.substring(0, allergyMarkStart-1)
         } else dish
     }
 }

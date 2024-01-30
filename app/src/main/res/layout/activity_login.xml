@@ -14,6 +14,7 @@
         android:layout_weight="1"
         android:fontFamily="@font/black"
         android:gravity="center"
+        android:textColor="@color/black"
         android:text="@string/login_hello"
         android:textSize="30sp" />
 
@@ -46,6 +47,8 @@
             android:layout_marginTop="35dp"
             android:backgroundTint="@color/app_color"
             android:fontFamily="@font/bold"
+            android:textColor="@color/white"
+            android:background="@drawable/round"
             android:text="@string/login_okay"
             android:textSize="18sp" />
 

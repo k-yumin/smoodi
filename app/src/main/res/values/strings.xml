@@ -55,8 +55,7 @@
     <string name="apply_apply">신청</string>
     <string name="apply_apply_true">신청됨</string>
     <string name="apply_download">신청 명단 다운로드</string>
-    <string name="apply_download_ing">신청 명단 다운로드 중</string>
-    <string name="apply_download_success">다운로드 성공! 다운로드 폴더에 저장되었습니다.</string>
+    <string name="apply_download_true">다운로드 폴더에 저장되었습니다.</string>
 
     <!-- RankActivity -->
     <string name="rank_title">인기 순위</string>

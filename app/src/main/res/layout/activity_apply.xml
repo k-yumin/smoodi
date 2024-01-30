@@ -30,6 +30,7 @@
             android:layout_centerInParent="true"
             android:fontFamily="@font/bold"
             android:text="@string/main_apply"
+            android:textColor="@color/black"
             android:textSize="25sp" />
     </RelativeLayout>
 
@@ -169,9 +170,12 @@
         android:id="@+id/btApply"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/app_color"
+        android:background="@drawable/round"
         android:fontFamily="@font/bold"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"
         android:text="@string/apply_apply"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <TextView

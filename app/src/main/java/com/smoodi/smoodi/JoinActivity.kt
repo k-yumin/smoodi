@@ -25,7 +25,6 @@ class JoinActivity : AppCompatActivity() {
 
         btJoin.setOnClickListener {
             btJoin.isEnabled = false
-
             val name = "${etNumber.text} ${etName.text}"
             join(Data.id, name)
         }

@@ -72,8 +72,10 @@
         android:id="@+id/btJoin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/round"
         android:backgroundTint="@color/app_color"
         android:fontFamily="@font/bold"
         android:text="@string/join_join"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 </LinearLayout>

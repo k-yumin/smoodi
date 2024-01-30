@@ -1,5 +1,6 @@
 package com.smoodi.smoodi
 
+import android.graphics.drawable.GradientDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -38,37 +39,54 @@ class ApplyActivity : AppCompatActivity() {
     private var gold: Int = 0
     private var appColor: Int = 0
 
+    private fun Button.setBackgroundTint(color: Int) {
+        val drawable: GradientDrawable = background.mutate() as GradientDrawable
+        drawable.setColor(color)
+        drawable.invalidateSelf()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_apply)
 
-        /* Action: Finish */
+        /* Close Activity */
         val tvBack: TextView = findViewById(R.id.tvApplyBack)
         tvBack.setOnClickListener { finish() }
 
         /* Setup Views */
         setupMeal()
 
-        grayBright = ContextCompat.getColor(this, R.color.gray_bright)
-        gold = ContextCompat.getColor(this, R.color.gold)
-        appColor = ContextCompat.getColor(this, R.color.app_color)
-
         cbApply = findViewById(R.id.cbApply)
         btApply = findViewById(R.id.btApply)
         tvApply = findViewById(R.id.tvApply)
+
+        grayBright = ContextCompat.getColor(this, R.color.gray_bright)
+        gold = ContextCompat.getColor(this, R.color.gold)
+        appColor = ContextCompat.getColor(this, R.color.app_color)
 
         cbApply.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 btApply.isEnabled = false
                 btApply.text = getString(R.string.apply_apply_true)
-                btApply.setBackgroundColor(grayBright)
+                btApply.setBackgroundTint(grayBright)
+
                 buttonStatus = false
-                if (initialCheckBoxStatus) update(0) else update(1)
+
+                if (initialCheckBoxStatus || initialButtonStatus) {
+                    update(0)
+                } else {
+                    update(1)
+                }
             } else {
                 btApply.isEnabled = true
                 btApply.text = getString(R.string.apply_apply)
-                btApply.setBackgroundColor(appColor)
-                if (initialCheckBoxStatus) update(-1) else update(0)
+                btApply.setBackgroundTint(appColor)
+
+                if (initialCheckBoxStatus || initialButtonStatus) {
+                    update(-1)
+                } else {
+                    update(0)
+                }
             }
         }
 
@@ -79,13 +97,23 @@ class ApplyActivity : AppCompatActivity() {
                 if (buttonStatus) {
                     buttonStatus = false
                     btApply.text = getString(R.string.apply_apply)
-                    btApply.setBackgroundColor(appColor)
-                    if (initialCheckBoxStatus) update(-1) else update(0)
+                    btApply.setBackgroundTint(appColor)
+
+                    if (initialCheckBoxStatus || initialButtonStatus) {
+                        update(-1)
+                    } else {
+                        update(0)
+                    }
                 } else {
                     buttonStatus = true
                     btApply.text = getString(R.string.apply_apply_true)
-                    btApply.setBackgroundColor(grayBright)
-                    if (initialCheckBoxStatus) update(0) else update(1)
+                    btApply.setBackgroundTint(grayBright)
+
+                    if (initialCheckBoxStatus || initialButtonStatus) {
+                        update(0)
+                    } else {
+                        update(1)
+                    }
                 }
             }
         }
@@ -93,16 +121,13 @@ class ApplyActivity : AppCompatActivity() {
         if (Data.isSuper()) {
             cbApply.visibility = View.GONE
             btApply.text = getString(R.string.apply_download)
-            btApply.setBackgroundColor(gold)
+            btApply.setBackgroundTint(gold)
         }
 
         getSession()
     }
 
     private fun setupMeal() {
-
-        val fontBlack = ResourcesCompat.getFont(this, R.font.black)
-        val fontRegular = ResourcesCompat.getFont(this, R.font.regular)
 
         val tvMon: TextView = findViewById(R.id.tvMon)
         val tvTue: TextView = findViewById(R.id.tvTue)
@@ -116,6 +141,9 @@ class ApplyActivity : AppCompatActivity() {
                 tvMeal.text = getString(R.string.main_meal_null)
             }
         }
+
+        val fontBlack = ResourcesCompat.getFont(this, R.font.black)
+        val fontRegular = ResourcesCompat.getFont(this, R.font.regular)
 
         tvMon.setOnClickListener {
             tvMon.typeface = fontBlack
@@ -205,10 +233,10 @@ class ApplyActivity : AppCompatActivity() {
                 if (!Data.isSuper()) {
                     if (cbApply.isChecked || buttonStatus) {
                         btApply.text = getString(R.string.apply_apply_true)
-                        btApply.setBackgroundColor(grayBright)
+                        btApply.setBackgroundTint(grayBright)
                     } else {
                         btApply.text = getString(R.string.apply_apply)
-                        btApply.setBackgroundColor(appColor)
+                        btApply.setBackgroundTint(appColor)
                     }
                 }
 
@@ -223,12 +251,7 @@ class ApplyActivity : AppCompatActivity() {
 
     private fun download() {
 
-        /* Disable Button */
-        btApply.isEnabled = false
-        btApply.text = getString(R.string.apply_download_ing)
-        btApply.setBackgroundColor(grayBright)
-
-        /* Make a CSV File */
+        /* Write on a csv */
         val type = Environment.DIRECTORY_DOWNLOADS
         val file = "${Environment.getExternalStoragePublicDirectory(type)}" +
                 "/${Data.now}_운호고_석식_신청_명단.csv"
@@ -248,65 +271,78 @@ class ApplyActivity : AppCompatActivity() {
             list.add(arrayOf(item[0], item[1]))
         }
 
+        val encoding = "EUC-KR"
+
         FileOutputStream(file).use { fos ->
-            OutputStreamWriter(fos, "EUC-KR").use { osw ->
+            OutputStreamWriter(fos, encoding).use { osw ->
                 CSVWriter(osw).use { cw ->
                     cw.writeAll(list)
                 }
             }
         }
 
-        /* Enable Button */
-        btApply.isEnabled = true
-        btApply.text = getString(R.string.apply_download)
-        btApply.setBackgroundColor(gold)
-
         /* Toast Success */
-        val toast = getString(R.string.apply_download_success)
+        val toast = getString(R.string.apply_download_true)
         Toast.makeText(this, toast, Toast.LENGTH_SHORT).show()
 
-    }
-
-    private fun update(add: Int) {
-        val count = dataNext.size + dataAlways.size + add
-        val total = "현재까지 ${count}명이 신청했습니다"
-        tvApply.text = total
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
-        val isCheckBoxStatusChanged = cbApply.isChecked != initialCheckBoxStatus
-        val isButtonStatusChanged = buttonStatus != initialButtonStatus
+        val isCheckBoxStatusChanged = initialCheckBoxStatus != cbApply.isChecked
+        val isButtonStatusChanged = initialButtonStatus != buttonStatus
 
-        if (isCheckBoxStatusChanged || isButtonStatusChanged) {
-            if (cbApply.isChecked || buttonStatus) {
-                db.collection(Data.KEY_APPLY)
-                    .document(
-                        if (cbApply.isChecked) Data.KEY_ALWAYS else Data.KEY_NEXT
-                    )
-                    .set(mapOf(Data.id to Data.name))
+        if (isCheckBoxStatusChanged) {
+
+            val docRef = db.collection(Data.KEY_APPLY).document(Data.KEY_ALWAYS)
+
+            if (cbApply.isChecked) {
+                docRef.set(mapOf(Data.id to Data.name))
                     .addOnFailureListener {
                         val toast = getString(R.string.error_server)
                         Toast.makeText(this, toast, Toast.LENGTH_SHORT).show()
                     }
-            }
-            if (!cbApply.isChecked || !buttonStatus) {
-                val docRef = db.collection(Data.KEY_APPLY)
-                    .document(
-                        if (!cbApply.isChecked) Data.KEY_ALWAYS else Data.KEY_NEXT
-                    )
-
+            } else {
                 val updates = hashMapOf<String, Any>(
                     Data.id to FieldValue.delete(),
                 )
-
                 docRef.update(updates)
                     .addOnFailureListener {
                         val toast = getString(R.string.error_server)
                         Toast.makeText(this, toast, Toast.LENGTH_SHORT).show()
                     }
             }
+
         }
+
+        if (isButtonStatusChanged) {
+
+            val docRef = db.collection(Data.KEY_APPLY).document(Data.KEY_NEXT)
+
+            if (buttonStatus) {
+                docRef.set(mapOf(Data.id to Data.name))
+                    .addOnFailureListener {
+                        val toast = getString(R.string.error_server)
+                        Toast.makeText(this, toast, Toast.LENGTH_SHORT).show()
+                    }
+            } else {
+                val updates = hashMapOf<String, Any>(
+                    Data.id to FieldValue.delete(),
+                )
+                docRef.update(updates)
+                    .addOnFailureListener {
+                        val toast = getString(R.string.error_server)
+                        Toast.makeText(this, toast, Toast.LENGTH_SHORT).show()
+                    }
+            }
+
+        }
+    }
+
+    private fun update(add: Int) {
+        val count = dataNext.size + dataAlways.size + add
+        val total = "현재까지 ${count}명이 신청했습니다"
+        tvApply.text = total
     }
 }

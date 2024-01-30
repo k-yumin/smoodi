@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /* Logout Action */
+        /* Setup Logout Button */
         val tvReset: TextView = findViewById(R.id.tvReset)
         tvReset.setOnClickListener {
 
@@ -32,6 +32,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         /* Setup Views */
+        setupBarcode()
+        setupDate()
+        setupMeal()
+        setupMenu()
+
         val tvIcon: TextView = findViewById(R.id.tvIcon)
         val tvName: TextView = findViewById(R.id.tvName)
 
@@ -41,11 +46,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         tvName.text = Data.name
-
-        setupBarcode()
-        setupDate()
-        setupMeal()
-        setupMenu()
 
         // To display open source notices
 //        startActivity(Intent(this, OssLicensesMenuActivity::class.java))
@@ -81,9 +81,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupMeal() {
 
-        val fontBlack = ResourcesCompat.getFont(this, R.font.black)
-        val fontRegular = ResourcesCompat.getFont(this, R.font.regular)
-
         val tvMeal1: TextView = findViewById(R.id.tvMeal1)
         val tvMeal2: TextView = findViewById(R.id.tvMeal2)
         val tvMeal3: TextView = findViewById(R.id.tvMeal3)
@@ -94,6 +91,9 @@ class MainActivity : AppCompatActivity() {
                 tvMeal.text = getString(R.string.main_meal_null)
             }
         }
+
+        val fontBlack = ResourcesCompat.getFont(this, R.font.black)
+        val fontRegular = ResourcesCompat.getFont(this, R.font.regular)
 
         tvMeal1.setOnClickListener {
             tvMeal1.typeface = fontBlack
